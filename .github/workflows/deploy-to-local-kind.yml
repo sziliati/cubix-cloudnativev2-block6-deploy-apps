@@ -14,4 +14,4 @@ jobs:
           POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
         run: |
           helm upgrade api spring-cubix --install -f api.yaml -n cubix
-          helm upgrade db spring-cubix --install -f db.yaml -n cubix --set SPRING_DATASOURCE_PASSWORD="$POSTGRESQL_PASSWORD"
+          helm upgrade db spring-cubix --install -f db.yaml -n cubix --set env[2].value="$POSTGRESQL_PASSWORD"
