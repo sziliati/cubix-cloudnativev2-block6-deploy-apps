@@ -31,17 +31,17 @@ spec:
           configMap:
             name: {{ include "spring-cubix.fullname" . }}
       {{- end }}
-      {{- if and .Values.configMap.enabled (eq .Values.configMap.as "file")}}
-      volumeMounts:
-        - name: config
-          mountPath: /opt/app/config
-      {{- end }}
       containers:
         - name: {{ .Release.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if and .Values.configMap.enabled (eq .Values.configMap.as "file")}}
+          volumeMounts:
+            - name: config
+              mountPath: /opt/app/config
+          {{- end }}
           startupProbe:
             periodSeconds: 5
             failureThreshold: 5
