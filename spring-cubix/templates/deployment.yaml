@@ -39,14 +39,18 @@ spec:
           livenessProbe:
             periodSeconds: 5
             failureThreshold: 5
-            tcpSocket:
-              port: http
+            httpGet:
+              path: /actuator/health/liveness
+              port: management
           readinessProbe:
             periodSeconds: 5
             failureThreshold: 5
-            tcpSocket:
-              port: http
+            httpGet:
+              path: /actuator/health/readiness
+              port: management
           env:
+          - name: MANAGEMENT_SERVER_PORT
+            value: "9080"
           - name: JAVA_OPTS
             value: {{ .Values.javaOpts | quote }}
           {{- range .Values.env }}
@@ -56,6 +60,9 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
+            - name: management
+              containerPort: 9080
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
