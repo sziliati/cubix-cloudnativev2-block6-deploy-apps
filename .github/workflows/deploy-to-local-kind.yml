@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-linux:
-    runs-on: [self-hosted, linux, macOS]
+    runs-on: [self-hosted]
     steps:
       - uses: actions/checkout@v6
       - name: Helm deployment
