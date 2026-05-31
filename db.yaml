@@ -9,9 +9,10 @@ configMap:
   directory: configuration
   as: file
 
-env:
-- name: SPRING_DATASOURCE_PASSWORD
-  #value: <<SET WITH INSTALLATION>>
+secret:
+  - envName: SPRING_DATASOURCE_PASSWORD
+    secretName: db-password
+    secretKey: password
 
 ingress:
   enabled: false
