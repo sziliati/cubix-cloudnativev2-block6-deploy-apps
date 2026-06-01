@@ -10,5 +10,8 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 9080
+      protocol: TCP
+      name: management
   selector:
     {{- include "spring-cubix.selectorLabels" . | nindent 4 }}
