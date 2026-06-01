@@ -11,6 +11,7 @@ spec:
       protocol: TCP
       name: http
     - port: 9080
+      targetPort: management
       protocol: TCP
       name: management
   selector:
