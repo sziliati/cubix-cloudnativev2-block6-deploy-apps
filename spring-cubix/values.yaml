@@ -3,6 +3,9 @@ configMap:
   directory: configuration
   as: ""
 
+openTelemetry:
+  targetUrl: http://tempo.tools:4317
+
 replicaCount: 1
 
 image:

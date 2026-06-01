@@ -4,6 +4,9 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
+openTelemetry:
+  targetUrl: http://tempo.tools:4317
+
 configMap:
   enabled: true
   directory: configuration
